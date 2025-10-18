@@ -51,14 +51,15 @@ Pre-built images are automatically published to GitHub Container Registry on eve
 
 **Available tags:**
 - `latest` - Latest build from main branch
-- `v*.*.*` - Semantic version tags (e.g., `v1.0.0`, `v1.0`, `v1`)
+- `main` - Latest from main branch
+- `*.*.*` - Semantic version tags (e.g., `1.0.0`, `1.0`, `1`)
 
 ```bash
 # Pull the latest image
 docker pull ghcr.io/positronico/truputi:latest
 
-# Or pull a specific version
-docker pull ghcr.io/positronico/truputi:v1.0.0
+# Or pull a specific version (note: no 'v' prefix)
+docker pull ghcr.io/positronico/truputi:1.0.0
 
 # Run the server
 docker run -d \
