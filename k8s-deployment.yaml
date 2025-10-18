@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: truputi-server
-        image: truputi-server:latest
+        image: ghcr.io/positronico/truputi:latest
         ports:
         - containerPort: 32201
           name: truputi

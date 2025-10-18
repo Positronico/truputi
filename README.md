@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![Docker Build](https://github.com/Positronico/truputi/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Positronico/truputi/actions/workflows/docker-publish.yml)
 
 A lightweight Python-based network throughput measurement system using only built-in libraries. Truputi is designed for measuring TCP throughput between client and server components with support for parallel streams.
 
@@ -44,7 +45,30 @@ chmod +x client.py server.py
 
 ## Quick Start
 
-### Building the Server Container
+### Using Pre-built Container Images
+
+Pre-built images are automatically published to GitHub Container Registry on every push to `main` and for all tagged releases.
+
+**Available tags:**
+- `latest` - Latest build from main branch
+- `v*.*.*` - Semantic version tags (e.g., `v1.0.0`, `v1.0`, `v1`)
+
+```bash
+# Pull the latest image
+docker pull ghcr.io/positronico/truputi:latest
+
+# Or pull a specific version
+docker pull ghcr.io/positronico/truputi:v1.0.0
+
+# Run the server
+docker run -d \
+  -p 32201:32201 \
+  -e TRUPUTI_PSK="your-secret-key-here" \
+  --name truputi-server \
+  ghcr.io/positronico/truputi:latest
+```
+
+### Building the Server Container Locally
 
 ```bash
 # Build the Docker image
@@ -152,7 +176,7 @@ spec:
     spec:
       containers:
       - name: truputi-server
-        image: truputi-server:latest
+        image: ghcr.io/positronico/truputi:latest
         ports:
         - containerPort: 32201
           name: truputi
